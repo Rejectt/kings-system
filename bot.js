@@ -482,32 +482,23 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 
-client.on("message", message => {//Toxic Codes
-        var prefix = "!";// البرفكس
-    if(message.content.startsWith(prefix + "setwlc")) {//Toxic Codes
-        let args = message.mentions.channels.first();
-            if(!args) message.channel.send("** منشن روم . ❌**").then(m => { //Toxic Codes   
-m.delete(1500);
+client.on('message', message => {
+if(message.channel.type === "dm") return;
+if(message.author.bot) return;
+  if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
+    channel: "welcome"
+}
+const channel = sWlc[message.guild.id].channel
+  if (message.content.startsWith(prefix + "setwlc")) {
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newChannel = message.content.split(' ').slice(1).join(" ")
+    if(!newChannel) return message.reply(`**${prefix}setwelcomer <channel name>**`)
+    sWlc[message.guild.id].channel = newChannel
+    message.channel.send(`**${message.guild.name}'s channel has been changed to ${newChannel}**`);
+  }
+   fs.writeFile('./setWlc.json', JSON.stringify(sWlc), (err) => {
+if (err) console.error(err);
 })
-                if(!message.guild.member(message.author.id).hasPermission("MANAGE_CHANNELS")) return message.channel.send("**ليس لديك صلاحيات . ❌**");
-                        message.channel.send(`**${args}. لقد تم شغل الروم هذا للترحيب.**`);//Toxic Codes
-                    client.on("guildMemberAdd", (member) => {
-                            if(member.user.bot) return;
-                         var embed = new Discord.RichEmbed()
-    .setAuthor(member.user.username, member.user.avatarURL)
-    .setThumbnail(member.user.avatarURL)//Toxic Codes
-    .setTitle('New Member')
-    .setDescription('Welcome To Server')//Toxic Codes
-    .addField('**ID Member:',"" +  member.user.id, true)
-    .addField('**Tage Member:', member.user.discriminator, true)
-    .addField('Created At Member', member.user.createdAt, true)
-    .addField(' 👤  Your Number',`**[ ${member.guild.memberCount} ]**`,true)
-    .setColor('RANDOM')
-    .setFooter(member.guild.name, member.guild.iconURL, true)
-                         
-   args.send({embed : embed});//Toxic Codes
-                    });
-    }
 });
 
 
