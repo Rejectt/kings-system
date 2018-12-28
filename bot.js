@@ -5,7 +5,6 @@ const client = new Discord.Client();
 client.on('ready', () => {
   console.log(`Welcome Bro ${client.user.tag}!`);
 });
-streaming
 
 const prefix = '!'
 
@@ -13,7 +12,7 @@ client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
-  if (message.author.id !== "460389855382470662") return;
+  if (message.author.id !== "528190514273714177") return;
 
   
   if (message.content.startsWith(prefix + 'setwatch')) {
