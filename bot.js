@@ -483,3 +483,5 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 
+
+client.login(process.env.TOKEN);// لا تغير فيها شيء
